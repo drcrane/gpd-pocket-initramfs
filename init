@@ -1,0 +1,41 @@
+#!/bin/busybox sh
+
+# Mount the /proc and /sys filesystems.
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+# Do your stuff here.
+echo "This script just mounts and boots the rootfs, nothing else!"
+
+modprobe xhci-pci
+modprobe xhci-hcd
+
+modprobe mmc-core
+modprobe mmc-block
+modprobe sdhci
+modprobe sdhci-acpi
+
+modprobe loop
+
+mount -t devtmpfs devtmpfs /dev
+
+sleep 1
+
+# Mount the root filesystem.
+#mount -o ro /dev/sda3 /mnt/root
+mount -o ro /dev/mmcblk0p7 /mnt/root
+
+setfont -C /dev/tty0 /root/ter-132n.psf.gz
+
+# enter a shell for interactive stuff
+exec sh
+
+# This will be ignored (because we did exec sh)
+# Clean up.
+umount /proc
+umount /sys
+umount /dev
+
+# Boot the real thing.
+exec switch_root /mnt/root /sbin/init
+

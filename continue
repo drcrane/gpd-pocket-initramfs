@@ -1,0 +1,12 @@
+#!/bin/busybox sh
+
+# execute to continue the boot process
+
+# Clean up.
+umount /proc
+umount /sys
+umount /dev
+
+# Boot the real thing.
+exec switch_root /mnt/root /sbin/init
+
