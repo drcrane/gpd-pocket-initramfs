@@ -37,6 +37,7 @@ if [[ ! -d ${INITRAMFSDIR} ]] ; then
 
 fi
 
+KERNELBASE=${BASEDIRECTORY}/linux-${KERNEL_VERSION}
 KERNELMODULESBASE=${BASEDIRECTORY}/modules-${KERNEL_VERSION}/lib/modules/
 INITRAMFSMODULESBASE=${BASEDIRECTORY}/initramfs-${KERNEL_VERSION}/lib/modules/
 
@@ -54,12 +55,13 @@ declare -a modules=(
 "kernel/drivers/mmc/host/sdhci-acpi.ko"
 "kernel/drivers/mmc/host/sdhci-pci.ko"
 "kernel/drivers/block/loop.ko"
+"kernel/drivers/platform/x86/gpd-pocket-fan.ko"
 )
 
 for i in "${modules[@]}"
 do
-    if [[ ! -f ${INITRAMFSMODULESBASE}${KERNEL_VERSION}/$i ]] ; then
-    	echo "Could not find ${INITRAMFSMODULESBASE}${KERNEL_VERSION}/$i"
+    if [[ ! -f ${KERNELMODULESBASE}${KERNEL_VERSION}/$i ]] ; then
+    	echo "Could not find ${KERNELMODULESBASE}${KERNEL_VERSION}/$i"
         continue
     fi
     destdir=`dirname ${INITRAMFSMODULESBASE}${KERNEL_VERSION}/$i`
@@ -72,4 +74,6 @@ done
 cd "${INITRAMFSDIR}"
 find . -print0 | cpio --null -ov --format=newc | gzip -9 > $BASEDIRECTORY/initramfs-${KERNEL_VERSION}.cpio.gz
 
+# copy the kernel there too...
+cp --dereference ${KERNELBASE}/arch/x86_64/boot/bzImage ${BASEDIRECTORY}/vmlinuz-${KERNEL_VERSION}
 
