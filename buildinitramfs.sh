@@ -17,8 +17,6 @@ if [[ ! -d ${INITRAMFSDIR} ]] ; then
 		echo "No busybox found, cannot continue"
 		exit 1
 	fi
-	mkdir initramfs-${KERNEL_VERSION}
-	cd initramfs-${KERNEL_VERSION}
 	for dir in "bin" "dev" "etc" "lib" "lib64" "mnt/root" "proc" "root" "sbin" "sys" ; do
 		mkdir -p ${dir}
 	done
