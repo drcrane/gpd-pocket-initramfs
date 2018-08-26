@@ -44,7 +44,7 @@ Setup the `config.sh` file for the right kernel version and locations.
 Step 6
 ------
 
-Build the ramfs:
+Build the ramfs (do this from the directory this file is located):
 
     ./buildinitramfs.sh
 

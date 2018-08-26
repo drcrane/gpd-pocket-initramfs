@@ -56,6 +56,9 @@ declare -a modules=(
 "kernel/drivers/platform/x86/gpd-pocket-fan.ko"
 )
 
+cp "${SCRIPT_DIRECTORY}/init" "${INITRAMFSDIR}"
+cp "${SCRIPT_DIRECTORY}/continue" "${INITRAMFSDIR}"
+
 for i in "${modules[@]}"
 do
     if [[ ! -f ${KERNELMODULESBASE}${KERNEL_VERSION}/$i ]] ; then
