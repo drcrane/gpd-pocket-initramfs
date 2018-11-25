@@ -9,6 +9,7 @@ echo "This script just mounts and boots the rootfs, nothing else!"
 
 modprobe xhci-pci
 modprobe xhci-hcd
+modprobe usb-storage
 
 modprobe mmc-core
 modprobe mmc-block

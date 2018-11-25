@@ -39,6 +39,14 @@ KERNELBASE=${BASEDIRECTORY}/linux-${KERNEL_VERSION}
 KERNELMODULESBASE=${BASEDIRECTORY}/modules-${KERNEL_VERSION}/lib/modules/
 INITRAMFSMODULESBASE=${BASEDIRECTORY}/initramfs-${KERNEL_VERSION}/lib/modules/
 
+# These files (which are symlinks) make it a bit of a pain to scp the lot to another machine... let's remove them
+if [[ -d ${BASEDIRECTORY}/modules-${KERNEL_VERSION}/lib/modules/${KERNEL_VERSION}/source ]] ; then
+rm ${BASEDIRECTORY}/modules-${KERNEL_VERSION}/lib/modules/${KERNEL_VERSION}/source
+fi
+if [[ -d ${BASEDIRECTORY}/modules-${KERNEL_VERSION}/lib/modules/${KERNEL_VERSION}/build ]] ; then
+rm ${BASEDIRECTORY}/modules-${KERNEL_VERSION}/lib/modules/${KERNEL_VERSION}/build
+fi
+
 declare -a modules=(
 "kernel/drivers/usb/storage/usb-storage.ko"
 "kernel/drivers/usb/host/xhci-pci.ko"

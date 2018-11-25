@@ -48,6 +48,17 @@ Build the ramfs (do this from the directory this file is located):
 
     ./buildinitramfs.sh
 
+Kernel Configurations
+=====================
+
+In `kernelconfig/` there are some known working configuration files.
+I hope to create releases of the kernel, firmware and modules to make
+anyone else's life a little easier who wishes to use Gentoo on the
+GPD Pocket.
+
+* linux-4.19.4-gentoo.config
+  This configuration works with the WiFi card - 2018-11-25
+
 References
 ----------
 
