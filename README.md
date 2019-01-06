@@ -32,7 +32,7 @@ Step 4
 Copy all the modules into a specific directory (the built kernel is not for the 
 host system so there is no need to install them locally).
 
-    make INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=/usr/src/modules-4.16.13-gentoo modules_install
+    make INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=/usr/src/modules-4.20.0-gentoo modules_install
 
 Alter the version, of course.
 
@@ -56,8 +56,8 @@ I hope to create releases of the kernel, firmware and modules to make
 anyone else's life a little easier who wishes to use Gentoo on the
 GPD Pocket.
 
-* linux-4.19.4-gentoo.config
-  This configuration works with the WiFi card - 2018-11-25
+* `kernel-config-x86_64-4.19.4-gentoo`
+* `kernel-config-x86_64-4.20.0-gentoo`
 
 References
 ----------
